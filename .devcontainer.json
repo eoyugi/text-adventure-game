@@ -1,0 +1,15 @@
+{
+    "name": "Python Text Adventure Game",
+    "image": "mcr.microsoft.com/devcontainers/python:latest",
+    "features": {
+      "git": "auto",
+      "dotnet": "sdk",
+      "node": "lts"
+    },
+    "extensions": [
+      "ms-python.python",
+      "donjayamanne.python-extension-pack"
+    ],
+    "remoteUser": "codespace",
+    "postCreateCommand": "pip install --user termcolor"
+}
