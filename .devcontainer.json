@@ -1,13 +1,27 @@
 {
-  "image": "mcr.microsoft.com/vscode/devcontainers/python:3.8-slim",
-  "features": {
-    "git": "auto"
+  "name": "Python Project",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "python.pythonPath": "/usr/local/bin/python",
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.formatting.provider": "black",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": true
+    }
   },
   "extensions": [
     "ms-python.python",
     "ms-python.vscode-pylance",
-    "VisualStudioExptTeam.vscodeintellicode"
+    "eamodio.gitlens",
+    "streetsidesoftware.code-spell-checker"
   ],
-  "remoteUser": "codespace",
-  "postCreateCommand": "pip install -r requirements.txt"
+  "forwardPorts": [5000],
+  "postCreateCommand": "pip install -r requirements.txt",
+  "remoteUser": "vscode"
 }
