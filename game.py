@@ -1,137 +1,103 @@
-map = [
-    ["start", None, None],
-    [None, "treasure", None],
-    ["enemy", None, "end"]
-]
+# Simple Python Text Adventure Game
 
-def print_location(current_location):
-    """
-    Generates a message describing the player's current location in a text-based adventure game.
+def start_game():
+    print("Welcome to the Adventure Game!")
+    print("You find yourself in a dark room with two doors. Which do you take?")
+    print("1. The door on the left.")
+    print("2. The door on the right.")
 
-    Parameters:
-    current_location (list): A list representing the player's current location and the adjacent locations. 
-    The first element is a string representing the current location. 
-    The second, third, and fourth elements represent the locations to the north, east, and south, respectively.
+    choice = input("> ")
 
-    Returns:
-    message (str): A string describing the player's current location and the types of the adjacent locations.
-    """
-    if current_location[0][0] == "S":
-        message = "You are at the start of the path.\n\nAdjacent paths:\n  ↑ north\n  → east\n  ↓ south"
-    elif current_location[0][0] == "T":
-        message = "You have found the treasure!\n\nReturn to the start (← west) to win!"
-    elif current_location[0][0] == "E":
-        message = "Watch out - there's an enemy here!\n\nReturn to the start (← west) to escape."
+    if choice == "1":
+        forest_path()
+    elif choice == "2":
+        dragon_room()
     else:
-        message = f"You are currently at {current_location[0][0]}."
-        
-    def print_location(current_location):
-        """
-        Generates a message describing the player's current location in a text-based adventure game.
+        print("That's not a valid choice. Try again!")
+        start_game()
 
-        Parameters:
-        current_location (list): A list representing the player's current location and the adjacent locations. 
-        The first element is a string representing the current location. 
-        The second, third, and fourth elements represent the locations to the north, east, and south, respectively.
+def forest_path():
+    print("You've entered a dark forest. There's a path ahead.")
+    print("Do you:")
+    print("1. Follow the path.")
+    print("2. Go back to the room with two doors.")
 
-        Returns:
-        message (str): A string describing the player's current location and the types of the adjacent locations.
-        """
-        if current_location[0][0] == "S":
-            message = "You are at the start of the path.\n\nAdjacent paths:\n  ↑ north\n  → east\n  ↓ south"
-        elif current_location[0][0] == "T":
-            message = "You have found the treasure!\n\nReturn to the start (← west) to win!"
-        elif current_location[0][0] == "E":
-            message = "Watch out - there's an enemy here!\n\nReturn to the start (← west) to escape."
-        else:
-            message = f"You are currently at {current_location[0][0]}."
+    choice = input("> ")
 
-        if current_location[1]:
-            message += f"\n  ↑ north: {current_location[1][0][0]}"
-        if current_location[2]:
-            message += f"\n   → east: {current_location[2][0][0]}"
-        if current_location[3]:
-            message += f"\n  ↓ south: {current_location[3][0][0]}"
-        
-        return message
-        map = [
-            ["start", None, None],
-            [None, "treasure", None],
-            ["enemy", None, "end"]
-        ]
-
-        def print_location(current_location):
-            """
-            Generates a message describing the player's current location in a text-based adventure game.
-
-            Parameters:
-            current_location (list): A list representing the player's current location and the adjacent locations. 
-            The first element is a string representing the current location. 
-            The second, third, and fourth elements represent the locations to the north, east, and south, respectively.
-
-            Returns:
-            message (str): A string describing the player's current location and the types of the adjacent locations.
-            """
-    def print_location(current_location):
-        if current_location[0][0] == "S":
-            message = "You are at the start of the path.\n\nAdjacent paths:\n  ↑ north\n  → east\n  ↓ south"
-        elif current_location[0][0] == "T":
-            message = "You have found the treasure!\n\nReturn to the start (← west) to win!"
-        elif current_location[0][0] == "E":
-            message = "Watch out - there's an enemy here!\n\nReturn to the start (← west) to escape."
-        else:
-            message = f"You are currently at {current_location[0][0]}."
-
-        if current_location[1]:
-            message += f"\n  ↑ north: {current_location[1][0][0]}"
-    current_location = map[0]
-    if current_location[2]:
-        message += f"\n   → east: {current_location[2][0][0]}"
-    if current_location[3]:
-        message += f"\n  ↓ south: {current_location[3][0][0]}"
-    
-    return message
-
-def get_player_move():
-    while True:
-        move = input("Which way do you want to go? ")
-        
-        if len(move) != 1:
-            print("Invalid command.")
-            continue
-        
-        if move not in ("w", "a", "s", "d"):
-            print("Invalid command.")
-            continue
-        
-        break
-    
-    if move == "w": # move up
-        return (-1, 0)
-    elif move == "a": # move left
-        return (0, -1)
-    elif move == "s": # move down
-        return (1, 0)
-    else: # move right
-        return (0, 1)
-# Initialize starting location
-current_location = map[0]
-
-while True:
-    print(print_location(current_location))
-    
-    dx, dy = get_player_move()
-    
-    new_x, new_y = current_location[0][0], current_location[0][1] + dy
-    new_location = map[new_y][new_x]
-    
-    if new_location is None:
-        print("There's nothing here!")
-    elif new_location[0][0] == "E":
-        print("Game over! You were killed by the enemy.")
-        break
-    elif new_location[0][0] == "T":
-        print("Congratulations! You found the treasure and won the game!")
-        break
+    if choice == "1":
+        cave_entrance()
+    elif choice == "2":
+        start_game()
     else:
-        current_location = new_location
+        print("Please enter a valid number.")
+        forest_path()
+
+def cave_entrance():
+    print("You've come to a cave entrance. It's very dark inside.")
+    print("Do you:")
+    print("1. Enter the cave.")
+    print("2. Go back to the forest.")
+
+    choice = input("> ")
+
+    if choice == "1":
+        treasure_room()
+    elif choice == "2":
+        forest_path()
+    else:
+        print("Please enter a valid number.")
+        cave_entrance()
+
+def dragon_room():
+    print("Oh no, you've walked into a room with a sleeping dragon!")
+    print("What do you do?")
+    print("1. Try to sneak past the dragon.")
+    print("2. Attack the dragon.")
+    print("3. Go back to the room with two doors.")
+
+    choice = input("> ")
+
+    if choice == "1":
+        print("You successfully sneak past the dragon and live to adventure another day!")
+        end_game()
+    elif choice == "2":
+        print("The dragon wakes up and you bravely face it in a fierce battle... but it's not enough. Game Over.")
+        end_game()
+    elif choice == "3":
+        start_game()
+    else:
+        print("Please enter a valid number.")
+        dragon_room()
+
+def treasure_room():
+    print("Congratulations! You've found the treasure room.")
+    print("You see a chest full of gold and jewels.")
+    print("Do you take the treasure and leave, or do you explore further?")
+    print("1. Take the treasure.")
+    print("2. Explore further.")
+
+    choice = input("> ")
+
+    if choice == "1":
+        print("You take the treasure and leave the cave. You are now a rich adventurer!")
+        end_game()
+    elif choice == "2":
+        print("As you explore further, you hear a loud rumbling sound. It's another dragon! Game Over.")
+        end_game()
+    else:
+        print("Please enter a valid number.")
+        treasure_room()
+
+def end_game():
+    print("Thank you for playing the game!")
+    play_again()
+
+def play_again():
+    choice = input("Do you want to play again? (yes/no) ")
+    if choice.lower() == "yes":
+        start_game()
+    else:
+        print("Goodbye!")
+
+# Start the game
+start_game()
